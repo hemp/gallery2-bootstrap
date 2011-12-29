@@ -1,0 +1,136 @@
+/*!
+ * Copyright 2011 Chris Hemp
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ */
+@import "bootstrap.less";
+ 
+// Admin page sidebar
+#gsSidebarCol {
+  width: 150px;
+  * img {
+  .clearfix();
+    float: left;
+    padding: 4px;
+    border: 1px solid #ddd;
+    .border-radius(4px);
+    .box-shadow(0 1px 1px rgba(0,0,0,.075));
+    img {
+      display: block;
+    }
+  }
+}
+#gsSidebarCol h3 {
+	font-size: 14px;
+	line-height: 100%;
+}
+#gsSidebarCol h2 {
+	font-size: 13px;
+}
+// Admin side bar menu heading
+#gsSidebarCol span {
+	padding-top:10px;
+	display:block;
+}
+// Admin side bar menu items
+#gsSidebarCol ul
+{
+    margin-left: -22px;
+    padding-left: 22px;
+}
+#gsSidebarCol ul,li
+{
+	list-style: none;
+}
+
+// Select boxes (multiple) not readable due to inability to add multiple attr.
+#gsContent select {
+  height: inherit;
+  background-color: @white; // Fixes Chromium bug of unreadable items
+}
+
+
+
+.block-core-SystemLink {
+	padding-right: 10px;
+}
+
+
+.gbDataTable {
+	.condensed-table;
+}
+
+// Forms
+.inputTypeSubmit {
+	.btn;
+}
+.inputTypeButton {
+	.btn;
+}
+
+.gbBlock {
+	.clearfix();
+}
+
+.giSuccess {
+	.alert-message();
+    font-size: 100%;
+    font-weight:normal;
+    line-height:@baseline;
+}
+
+// gallery2 tabs
+.gbTabBar {
+  margin: 0 0 @baseline;
+  padding: 0;
+  .clearfix();
+  
+  border-color: #ddd;
+  border-style: solid;
+  border-width: 0 0 1px;
+  > span {
+     float: left;
+	 > span > a {
+         display: block;
+         margin-bottom: -1px;
+	      padding: 0 15px;
+	      margin-right: 2px;
+	      line-height: (@baseline * 2) - 2;
+	      border: 1px solid transparent;
+	      .border-radius(4px 4px 0 0);
+	      &:hover {
+	        text-decoration: none;
+	        background-color: #eee;
+	        border-color: #eee #eee #ddd;
+	      }
+     }
+  }
+  // Active state, and it's :hover to override normal :hover
+  .giSelected span,
+  .giSelected span:hover {
+         display: block;
+         margin-bottom: -1px;
+	      padding: 0 15px;
+	      margin-right: 2px;
+	      line-height: (@baseline * 2) - 2;
+	      border: 1px solid transparent;
+	      .border-radius(4px 4px 0 0);
+    color: @gray;
+    background-color: @white;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+    cursor: default;
+  }
+}
+
+// scratch area
+.center-align-element
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.padleft10px
+{
+	padding-left:10px;
+}
