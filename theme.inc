@@ -38,12 +38,10 @@ class BootstrapTheme extends GalleryTheme {
 	$this->setRequiredThemeApi(array(2, 4));
 	$this->setStandardSettings(
 	    array('perPage' => 9,
-		  'contentWidth' => 700,
 		  'albumBlocks' => serialize(array(array('comment.ViewComments', array()))),
 		  'photoBlocks' => serialize(array(array('exif.ExifInfo', array()),	array('comment.ViewComments', array()))),
-		  'contentWidth' => 700,
-		  'groupByYear' => 0,
-		  'enableImageMap' => 1)
+		  'enableImageMap' => 1,
+		  'brandTitle' => 'Brand Title Here [Configure me]')
 		);
     }
 
@@ -176,17 +174,17 @@ class BootstrapTheme extends GalleryTheme {
 	}
 
 	/* Add in our custom settings */
-	$settings[] = array('key' => 'contentWidth',
-			    'name' => $this->translate('Width of page content in pixels'),
-			    'type' => 'text-field',
-			    'typeParams' => array('size' => 2),
-			    'value' => $params['contentWidth']);
 	$settings[] = array('key' => 'enableImageMap',
 			    'name' => $this->translate(
 		'Enable prev/next navigation by clicking in the left/right half of the image'),
 			    'type' => 'checkbox',
 			    'value' => $params['enableImageMap']);
-
+	$settings[] = array('key' => 'brandTitle',
+				    'name' => $this->translate('Specify the brand/title for the text in the upper left'),
+				    'type' => 'text-field',
+                    'typeParams' => array('size' => 50),
+				    'value' => $params['brandTitle']);
+	
 	return array(null, $settings, $params);
     }
 
@@ -195,9 +193,6 @@ class BootstrapTheme extends GalleryTheme {
      */
     function validateSettings($settings) {
 	$error = parent::validateSettings($settings);
-	if (!is_numeric($settings['contentWidth'])) {
-	    $error['contentWidth'] = $this->translate('You must enter a number');
-	}
 	return $error;
     }
 }
