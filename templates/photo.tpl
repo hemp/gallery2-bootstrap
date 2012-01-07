@@ -47,7 +47,7 @@
 </map>
 {/if}
 
-{if isset($theme.navigator.back) || isset($theme.navigator.next)}{literal}
+{if (isset($theme.navigator.back) || isset($theme.navigator.next))}{literal}
 <script>
 $(document).ready(function () {
 $(document).keydown(function(e){
@@ -69,7 +69,6 @@ $(document).keydown(function(e){
 });
 </script>
 {/literal}{/if}
-
 
 {* Navigator *}
 {if !empty($theme.navigator)}
