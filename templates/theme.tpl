@@ -50,7 +50,7 @@
     <div class="topbar" data-scrollspy="scrollspy">
       <div class="topbar-inner">
         <div class="container">
-          <a class="brand" href="{$smarty.get.page}">Photos</a>
+          <a class="brand" href="{g->url}">{$theme.params.brandTitle}</a>
 
           <ul class="nav">
 <!--             <li class="active"><a href="#overview">Overview</a></li> -->
@@ -65,11 +65,11 @@
 <!--                   </form> -->
           </ul>
           {g->block type="core.SystemLinks" order="core.SiteAdmin core.YourAccount core.Login core.Logout" othersAt=4}
+          
+          <script type="text/javascript" src="{g->url href='modules/search/SearchBlock.js'}"></script>{g->block type=search.SearchBlock}
         </div>
       </div>
     </div>
-  
-  
   	<div class="container">
     <div {g->mainDivAttributes}>
       {*
@@ -98,14 +98,15 @@
 			  {g->theme include="module.tpl"}
 			{/if}
 
-			<div class="footer"><footer>
-			  <!-- {g->logoButton type="validation"}
+			<footer class="footer">
+			  <!-- Old school
+			  {g->logoButton type="validation"}
 			  {g->logoButton type="gallery2"}
 			  {g->logoButton type="gallery2-version"}
-			  {g->logoButton type="donate"} -->
-			  Powered by <a href="http://gallery.menalto.com/" target="_new">Gallery</a>.<br/>
-			  <a href="https://github.com/hemp/bootstrap" target="_new">Gallery theme</a> by <a href="http://chrishemp.com" target="_new">Chris Hemp</a>.
-			</footer></div>
+			  {g->logoButton type="donate"}
+			  -->
+			  Powered by <a href="http://gallery.menalto.com/" target="_new">Gallery</a> and <a href="https://github.com/hemp/gallery2-bootstrap" target="_new">theme</a>.
+			</footer>
 		  </div>
 		  </div>
       {/if}  {* end of full screen check *}
@@ -147,14 +148,18 @@ $(document).ready(function() {
       .click(function(e) {
          e.preventDefault()
       });
+
+   $('.tabs').tabs();
+   
+   $(".inputTypeSubmit:first-child").addClass("primary");
  });
 </script>
-{/literal}
 	
   <!--[if lt IE 7 ]>
     <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
-    <script>window.attachEvent('onload',function(){ldelim}CFInstall.check({ldelim}mode:'overlay'{rdelim}){rdelim})</script>
+    <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
   <![endif]-->
+{/literal}
 
     {* Put any debugging output here, if debugging is enabled *}
     {g->debug}  
