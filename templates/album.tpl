@@ -5,11 +5,10 @@
 <!-- <div class="page-header"><h2>{$theme.item.title|markup}</h2></div> -->
 
 {if !count($theme.children)}
-  <div class="gallery-empty">
+  <div class="alert-message block-message info">
     <p><strong>{g->text text="This album is empty."}</strong></p>
     {if isset($theme.permissions.core_addDataItem)}
-    <p><a href="{g->url arg1="view=core.ItemAdmin" arg2="subView=core.ItemAdd"
-			arg3="itemId=`$theme.item.id`"}">{g->text text="Add a photo!"}</a></p>
+    <div class="alert-actions"><a class="btn small" href="{g->url arg1="view=core.ItemAdmin" arg2="subView=core.ItemAdd" arg3="itemId=`$theme.item.id`"}">{g->text text="Add a photo!"}</a></div>
     {/if}
   </div>
 {else}
@@ -79,7 +78,6 @@
   <hr />
   <p>{$theme.item.description|markup}</p>
 {/if}
-
 
 {* Show any other album blocks (comments, etc) *}
 {foreach from=$theme.params.albumBlocks item=block}
