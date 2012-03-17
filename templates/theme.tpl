@@ -22,11 +22,7 @@
 
 <!-- DEV MODE -->
 <link rel="stylesheet/less" type="text/css" href="{g->theme url="lib/gallery2.less"}">
-<script src="{g->theme url="js/libs/less-1.2.1.min.js"}" type="text/javascript"></script>
-<script type="text/javascript">
-    less.env = "development";
-    less.watch();
-</script>
+<script src="{g->theme url="js/libs/less-1.3.0.min.js"}" type="text/javascript"></script>
 <!-- DEV MODE -->
 
     <style type="text/css">
