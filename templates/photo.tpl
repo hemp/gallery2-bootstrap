@@ -6,8 +6,6 @@
 {assign var="image" value=$theme.imageViews[$theme.imageViewsIndex]}
 {/if}
 
-<div class="page-header"><h2>{$theme.item.title|markup}</h2></div>
-
 {if !empty($theme.imageViews)}
   {capture name="fallback"}
     <a href="{g->url arg1="view=core.DownloadItem" arg2="itemId=`$theme.item.id`"
@@ -17,7 +15,7 @@
   {/capture}
 
   {if ($image.viewInline)}
-	<ul class="media-grid">
+	<ul class="thumbnails">
       {if $theme.params.enableImageMap}{strip}
 		{if isset($theme.navigator.back)}
 		{/if}
@@ -112,4 +110,3 @@ $(document).keydown(function(e){
 
 {* Our emergency edit link, if the user removes all blocks containing edit links *}
 {g->block type="core.EmergencyEditItemLink" class="gbBlock" checkBlocks="photo"}
-

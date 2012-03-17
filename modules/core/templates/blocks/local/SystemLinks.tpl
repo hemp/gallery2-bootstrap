@@ -17,9 +17,8 @@
   {/foreach}
 {/capture}
 
-<ul class="nav secondary-nav">
-<li class="dropdown" data-dropdown="dropdown">
-<a href="#" class="dropdown-toggle">Profile</a>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
 <ul class="dropdown-menu">
 {foreach from=$order key=index item=linkId}
   {if $index==$othersAt}
@@ -32,5 +31,4 @@
   {/if}
 {/foreach}
 </ul></li>
-</ul>
 {if !isset($SystemLinksShown)}{$smarty.capture.SystemLinks}{/if}

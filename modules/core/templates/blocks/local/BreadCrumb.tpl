@@ -8,21 +8,16 @@
  * G2 uses the highlight id to figure out which page to draw when you follow the
  * breadcrumbs back up the album tree.  Don't make the last item a link.
  *}
-<div class="{$class}">
-<ul class="breadcrumb">
+
+<ul class="breadcrumb navbar-fixed-top">
   {foreach name=parent from=$theme.parents item=parent}
-  <li><a href="{g->url params=$parent.urlParams}" class="BreadCrumb-{counter name="BreadCrumb"}">
-    {$parent.title|markup:strip|default:$parent.pathComponent}</a>
+  <li><a href="{g->url params=$parent.urlParams}" class="BreadCrumb-{counter name="BreadCrumb"}">{$parent.title|markup:strip|default:$parent.pathComponent}</a>
   {if isset($separator)} <span class='divider'>{$separator}</span> {/if}</li>
   {/foreach}
 
   {if ($theme.pageType == 'admin' || $theme.pageType == 'module')}
-  <li><a href="{g->url arg1="view=core.ShowItem"
-		   arg2="itemId=`$theme.item.id`"}" class="BreadCrumb-{counter name="BreadCrumb"}">
-     {$theme.item.title|markup:strip|default:$theme.item.pathComponent}</a></li>
+  <li><a href="{g->url arg1="view=core.ShowItem" arg2="itemId=`$theme.item.id`"}" class="BreadCrumb-{counter name="BreadCrumb"}">{$theme.item.title|markup:strip|default:$theme.item.pathComponent}</a></li>
   {else}
-  <li class="active"><span class="BreadCrumb-{counter name="BreadCrumb"}">
-     {$theme.item.title|markup:strip|default:$theme.item.pathComponent}</span></li>
+  <li class="active"><span class="BreadCrumb-{counter name="BreadCrumb"}">{$theme.item.title|markup:strip|default:$theme.item.pathComponent}</span></li>
   {/if}
 </ul>
-</div>

@@ -12,66 +12,77 @@
     {/if}
   </div>
 {else}
+
+  {if !$user.isGuest}
+  <div class="row-fluid"><div class="span2">{g->block type="core.ItemLinks" useDropdown=false links=$theme.userLinks}</div>
+  <div class="span10">
+  {/if}
+
   {assign var="firstAlbum" value=true}
 
   {foreach from=$theme.children item=child}
+    {if $child.canContainChildren}
     {if $firstAlbum}
-      <div class="row">
+      <div class="row-fluid">
+      <ul class="thumbnails">
       {assign var="firstAlbum" value=false}
     {/if}
       
-    {if $child.canContainChildren}    
-    <div class="span8">
-      <h3><a href="{g->url arg1="view=core.ShowItem" arg2="itemId=`$child.id`"}">{$child.title|default:$child.pathComponent|markup}</a></h3>
-      <ul class="media-grid">
-          <li><a href="{g->url arg1="view=core.ShowItem" arg2="itemId=`$child.id`"}" rel="twipsy" data-placement="right" title="{if ($child.descendentCount > 0)}{g->text text="%d Images" arg1=$child.descendentCount}{/if}">
-          {if isset($child.thumbnail)}
-            {g->image item=$child image=$child.thumbnail class="thumbnail"}
-          {else}
-            {g->text text="no thumbnail"}
-          {/if}
-          </a>
-
-          {if isset($child.summary) && $child.summary.length>0}<p>&nbsp;&nbsp;{$child.summary|entitytruncate:256|markup}</p>{/if}
-          
-          {if isset($child.itemSummaries.newitems)}&nbsp;&nbsp;<span class="label success">{$child.itemSummaries.newitems}</span><br/>{/if}		
-		  </li>
-      </ul>
-    </div>	
+      <li><div class="thumbnail">
+      <a href="{g->url arg1="view=core.ShowItem" arg2="itemId=`$child.id`"}" rel="tooltip" data-placement="right" data-title="{if ($child.descendentCount > 0)}{g->text text="%d Images" arg1=$child.descendentCount}{/if}">
+      {if isset($child.thumbnail)}{g->image item=$child image=$child.thumbnail}{else}<img height="150" width="150" src="http://placehold.it/150&text=no%20thumbnail"/>{/if}
+      </a>
+      <div class="caption well" style="width:130px;height:55px;margin-bottom:0;padding-top:0;padding-bottom:0;text-align:center;display:table-cell;vertical-align:middle;">
+      
+      <a href="{g->url arg1="view=core.ShowItem" arg2="itemId=`$child.id`"}">{$child.title|default:$child.pathComponent|markup}</a>
+      {if isset($child.itemSummaries.newitems)}<span class="label label-success">{$child.itemSummaries.newitems}</span>{/if}
+      
+      </div>
+      </div></li>
     {/if}
   {/foreach}
   {if !$firstAlbum}
-     </div>
+    </ul>
+    </div>
   {/if}
-    
-  {assign var="firstItem" value=true}
 
+  {assign var="firstItem" value=true}
   {foreach from=$theme.children item=child}
     {if !$child.canContainChildren}
       {if $firstItem}
-		<ul class="media-grid">
         {assign var="firstItem" value=false}
+        <div class="row-fluid">
+        <ul class="thumbnails">
       {/if}
-	<li><a href="{g->url params=$theme.pageUrl arg1="itemId=`$child.id`"}">
+	<li><a class="thumbnail" href="{g->url params=$theme.pageUrl arg1="itemId=`$child.id`"}">
 	  {if isset($child.thumbnail)}
-	    {g->image item=$child image=$child.thumbnail class='thumbnail'}
+	    {g->image item=$child image=$child.thumbnail}
 	  {else}
-	    {g->text text="no thumbnail"}
+	    <img height="150" width="150" src="http://placehold.it/150&text=no%20thumbnail"/>
 	  {/if}
 	</a></li>
     {/if}
   {/foreach}
   {if !$firstItem}
-      <div class="clear"></div>
+    </ul>
+    </div>
   {/if}
-{/if}
-</div></div>
 
 {* Navigator *}
 {if $theme.totalPages > 1}
 {g->block type="core.Navigator" navigator=$theme.navigator prefix="&larr;  " suffix=" &rarr;"
 	  currentPage=$theme.currentPage totalPages=$theme.totalPages}
 {/if}
+
+  
+  {if !$user.isGuest}
+  </div><!--./span10-->
+  </div><!--./row-fluid-->
+  {/if}
+  
+  
+{/if}
+
 
 {* Description *}
 {if !empty($theme.item.description)}
@@ -87,14 +98,11 @@
 {if !empty($theme.userLinks)}
 <!--  TODO -->
 <div class="pull-right">
-	{g->block type="core.ItemLinks" useDropdown=true
-	  links=$theme.userLinks class="floatrix-userLinks"}
+	{g->block type="core.ItemLinks" useDropdown=true links=$theme.userLinks}
 </div>
 {/if}
 
-{* Guest preview mode *}
-{g->block type="core.GuestPreview" class="gbBlock"}
-
-{* Our emergency edit link, if the user removes all blocks containing edit links *}
+{* Our emergency edit link, if the user removes all blocks containing edit links 
 {g->block type="core.EmergencyEditItemLink" class="gbBlock" checkBlocks="album,itemlinks"}
+*}
 

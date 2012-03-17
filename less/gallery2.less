@@ -1,0 +1,57 @@
+/*!
+ * Copyright 2011 Chris Hemp
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ */
+@import "bootstrap.less";
+
+.gbBlock {
+	.clearfix();
+}
+
+.inputTypeSubmit {
+// can't mixin btn anymore in 2.x
+//	.btn();
+}
+.inputTypeSubmit:first-child {
+//	.btn-primary();
+}
+.inputTypeButton {
+//	.btn();
+}
+ 
+// Success message boxes
+.giSuccess {
+	.alert();
+	.alert-success();
+    font-size: 100%;
+    font-weight:normal;
+    line-height:@baseLineHeight;
+}
+
+
+// Admin side bar menu items
+#gsSidebarCol {
+	width:225px;
+}
+#gsSidebarCol h2 {
+	font-size: 18px;
+}
+#gsSidebarCol ul
+{
+    margin-left: -22px;
+    padding-left: 22px;
+}
+#gsSidebarCol ul,li
+{
+	list-style: none;
+}
+// Admin side bar menu heading
+#gsSidebarCol span {
+	padding-top:10px;
+	display:block;
+}
+#gsSidebar {
+	.well();
+	margin-right:10px;
+}

@@ -13,7 +13,6 @@
  * The strip calls in this tpl are to avoid a safari bug where padding-right is lost
  * in floated containers for elements that have whitespace before the closing tag.
  *}
-<div class="{$class}">
 <div class="pagination">
 <ul>
 {foreach from=$order|split item="which"}
@@ -21,7 +20,7 @@
     {strip}
     {if isset($navigator.next)}    {* Uncomment to omit next when same as last:
 	&& (!isset($navigator.last) || $navigator.next.urlParams != $navigator.last.urlParams)} *}
-    <li class="next"><a href="{g->url params=$navigator.next.urlParams}" class="next">
+    <li><a href="{g->url params=$navigator.next.urlParams}">
       {g->text text="next"}{$suffix}
       {if isset($navigator.next.thumbnail)}
 	{g->image item=$navigator.next.item image=$navigator.next.thumbnail
@@ -31,7 +30,7 @@
     {/if}
 
     {if isset($navigator.last)}
-    <li class="next"><a href="{g->url params=$navigator.last.urlParams}" class="last">
+    <li><a href="{g->url params=$navigator.last.urlParams}">
       {g->text text="last"}{$suffix}
       {if isset($navigator.last.thumbnail)}
 	{g->image item=$navigator.last.item image=$navigator.last.thumbnail
@@ -40,7 +39,6 @@
     </a></li>
     {/if}
     {/strip}
-  </div>
 {elseif $which=="current"}
   {if (isset($currentPage) && isset($totalPages)) || (isset($currentItem) && isset($totalItems))}
   {assign var="lastPage" value=0}
@@ -65,7 +63,7 @@
 {else}
     {strip}
     {if isset($navigator.first)}
-    <li class="prev"><a href="{g->url params=$navigator.first.urlParams}" class="first">
+    <li><a href="{g->url params=$navigator.first.urlParams}">
       {if isset($navigator.first.thumbnail)}
 	{g->image item=$navigator.first.item image=$navigator.first.thumbnail
 		  maxSize="40" class="first"}
@@ -76,7 +74,7 @@
 
     {if isset($navigator.back)}    {* Uncomment to omit previous when same as first:
 	&& (!isset($navigator.first) || $navigator.back.urlParams != $navigator.first.urlParams)} *}
-    <li class="prev "><a href="{g->url params=$navigator.back.urlParams}" class="previous">
+    <li><a href="{g->url params=$navigator.back.urlParams}">
       {if isset($navigator.back.thumbnail)}
 	{g->image item=$navigator.back.item image=$navigator.back.thumbnail
 		  maxSize="40" class="previous"}
@@ -88,5 +86,4 @@
 {/if}
 {/foreach}
 </ul>
-</div>
 </div>
